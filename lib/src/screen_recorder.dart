@@ -9,8 +9,8 @@ import 'frame.dart';
 class ScreenRecorderController {
   ScreenRecorderController({
     Exporter? exporter,
-    this.pixelRatio = 0.5,
-    this.skipFramesBetweenCaptures = 2,
+    this.pixelRatio = 0.3,
+    this.skipFramesBetweenCaptures = 0,
     SchedulerBinding? binding,
   })  : _containerKey = GlobalKey(),
         _binding = binding ?? SchedulerBinding.instance,
@@ -87,7 +87,7 @@ class ScreenRecorderController {
     final renderObject = _containerKey.currentContext!.findRenderObject()
         as RenderRepaintBoundary;
 
-    return renderObject.toImageSync(pixelRatio: pixelRatio);
+    return renderObject.toImage(pixelRatio: pixelRatio);
   }
 }
 
