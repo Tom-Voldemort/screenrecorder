@@ -9,7 +9,7 @@ import 'frame.dart';
 class ScreenRecorderController {
   ScreenRecorderController({
     Exporter? exporter,
-    this.pixelRatio = 0.3,
+    this.pixelRatio = 1.0,
     this.skipFramesBetweenCaptures = 0,
     SchedulerBinding? binding,
   })  : _containerKey = GlobalKey(),
@@ -84,10 +84,10 @@ class ScreenRecorderController {
   }
 
   ui.Image? capture() {
-    final renderObject = _containerKey.currentContext!.findRenderObject()
-        as RenderRepaintBoundary;
-
-    return renderObject.toImage(pixelRatio: pixelRatio);
+    final renderObject = _containerKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    final image = renderObject.toImage(pixelRatio: pixelRatio);
+    print('++++++++++++++ Package Captured frame: ${image.width}x${image.height}');
+    return image;
   }
 }
 
