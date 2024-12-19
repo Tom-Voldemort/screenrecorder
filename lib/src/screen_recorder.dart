@@ -84,10 +84,10 @@ class ScreenRecorderController {
   }
 
   ui.Image? capture() {
-    final renderObject = _containerKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    final image = renderObject.toImage(pixelRatio: pixelRatio);
-    print('++++++++++++++ Package Captured frame: ${image.width}x${image.height}');
-    return image;
+    final renderObject = _containerKey.currentContext!.findRenderObject()
+        as RenderRepaintBoundary;
+
+    return renderObject.toImageSync(pixelRatio: pixelRatio);
   }
 }
 
